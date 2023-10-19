@@ -34,7 +34,7 @@ We use R's Deseq2 library to generate the condition contrast. In this repository
 ### Stage 1
 The metadata and input counts for Deseq2 should be in a default way. Both need to keep the same name of the samples. At the same time, the metadata must contain the name of both conditions.  As shown below:
 
-'''R
+ ``` R
 #librerias
 library(dplyr)
 library(DESeq2)
@@ -69,13 +69,13 @@ sampledata <- data.frame(
                "Water Stress and high irradiance")
   
 )
-'''
+ ``` 
 
 
 Now, we load the counts to R and make sure to select the samples that we're going to use for our analysis. 
 
 
-''' R
+ ``` R
 #################################################################
 ##### COUNTS ########################
 ######################################################
@@ -112,7 +112,7 @@ sampledata <- sampledata %>%
   mutate(samples = gsub('\\_', '.', samples)) 
 
 save(sampledata, counts, file="Entrada_Deseq2.RData")
-'''
+ ``` 
 
 We have modified our data to be able to generate the data matrix for Deseq2. 
 
@@ -121,7 +121,7 @@ Next, with the data and metadata generated, we create the data matrix for Deseq2
 Sometimes it is necessary to look at the distribution of your counts in order to assess where to assign the pre-filtering of genes. 
 
 
-'''R
+ ``` R
 ############################################################################
 ##### DESEQ2 ENTRY ###########################
 ###################################################
@@ -149,12 +149,13 @@ dds_wt <- estimateSizeFactors(dds10)
 
 rld<-rlog(dds_wt, blind = TRUE)
 head(assay(rld))
-'''
+ ``` 
 
 ### Step Three
 Let's look at the effect of stabilization on our samples. Some prefer to take the assessment through PCA. Or any other method.  Here we show three different ways to assess gene expression. 
 
-''' R
+
+ ``` R
 ##################################################################
 ###### Heatmap  #######
 
@@ -201,14 +202,14 @@ boxplot(rld_mat_wt, outline=FALSE, main="After stabilization", xaxt="n")
 plotPCA(rld, intgroup = "Condition")
 
 save(dds,dds10, dds_wt, rld, file="rlds_Abiotic_Stress.RData")
-'''
+ ``` 
 
 ![Sample Distribution](Distribution.jpg)
 
 ### Step Four
 It's time to perform the differential expression analysis.  To do this, it is necessary to set our conditions to R. 
 
-''' R
+ ``` R
 
 #- Simple volcano plot
 #- MAT
@@ -230,13 +231,13 @@ save(res, dds,resSig, file="DEG_AbioticStress.RData")
 
 sum( res$padj < 0.05, na.rm=TRUE )
 #695 genes
-'''
+ ``` 
 
 ### Step Five 
 We can analyze our results with a volcano plot or a heatmap. 
 
 
-''' R
+ ``` R
 ############################################################################
 ###### ####################
 
@@ -292,7 +293,7 @@ pheatmap(norm_sig, main="Abiotic Stress", color=heat.colors, cluster_rows=T,
 
 
 save(norm.data, file="NormData.RData")
-'''
+ ``` 
 
 ![](Heatmap.jpg)
 ![](volcano_Plot.jpg)
