@@ -204,7 +204,7 @@ plotPCA(rld, intgroup = "Condition")
 save(dds,dds10, dds_wt, rld, file="rlds_Abiotic_Stress.RData")
  ``` 
 
-![Sample Distribution](Distribution.jpg)
+![](Distribution.png)
 
 ### Step Four
 It's time to perform the differential expression analysis.  To do this, it is necessary to set our conditions to R. 
@@ -295,8 +295,8 @@ pheatmap(norm_sig, main="Abiotic Stress", color=heat.colors, cluster_rows=T,
 save(norm.data, file="NormData.RData")
  ``` 
 
-![](Heatmap.jpg)
-![](volcano_Plot.jpg)
+![](Heatmap.png)
+![](volcano_Plot.png)
 
 # Credits
 
