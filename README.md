@@ -300,6 +300,8 @@ save(norm.data, file="NormData.RData")
 
 # Credits
 
+Tere Parra (2023) [https://github.com/Tere-Parra/Differential-Genes-in-Two-Types-of-Abiotic-Stress-in-Plants]
+
 ## Bibliography
 Love MI, Huber W, Anders S (2014). "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2." Genome Biology, 15, 550. doi:10.1186/s13059-014-0550-8.
 
